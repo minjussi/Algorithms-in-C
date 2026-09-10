@@ -15,8 +15,21 @@ Node *merge_sort(Node *head) {}
 Node *merge(Node *a, Node *b) {}
 
 int main() {
-  FILE *file;
-  file = fopen("hw1_input.txt", "w");
+  FILE *ofile = fopen("hw1_input.txt", "r");
+  if (ofile == NULL) return 1;
 
+  Node *head = NULL;
+
+  head = merge_sort(head);
+  
+  FILE *rfile = fopen("hw1_output.txt", "w");
+  Node *curr = head;
+  while (curr != NULL) {
+    fprintf(rfile, "%s\n", curr->data);
+    curr = curr->next;
+  }
+
+  fclose(ofile);
+  fclose(rfile);
   return 0;
 }
