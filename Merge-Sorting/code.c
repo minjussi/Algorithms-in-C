@@ -2,10 +2,11 @@
 #include <string.h>
 
 struct Node {
-  int data;
+  char data;
+  struct Node *next;
 }
 
-int () {
+int main() {
   FILE *file;
-  file = fopen("hw1_output.txt", "w");
+  file = fopen("hw1_input.txt", "w");
 }
