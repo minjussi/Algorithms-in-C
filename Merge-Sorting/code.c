@@ -8,13 +8,22 @@ typedef struct Node {
   struct Node *next;
 } Node;
 
-// recursive sort
-Node *merge_sort(Node *head) {
-  if (head == NULL || head->next == NULL)
+// combines two sorted lists
+Node *merge(Node *a, Node *b) {
+  
 }
 
-// combines two sorted lists
-Node *merge(Node *a, Node *b) {}
+// recursive sort
+// find the midpoint and split it into two halves
+Node *merge_sort(Node *head) {
+  if (head == NULL || head->next == NULL) {
+
+    merge_sort();
+    merge_sort();
+
+    merge();
+  }
+}
 
 int main() {
   FILE *ofile = fopen("hw1_input.txt", "r");
