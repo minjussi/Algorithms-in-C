@@ -10,17 +10,32 @@ typedef struct Node {
 
 // combines two sorted lists
 Node *merge(Node *a, Node *b) {
-  Node empty;
-  empty.next = NULL;
+  Node dummy;
+  dummy.next = NULL;
+  Node *curr = &dummy;
 
   while (a != NULL && b != NULL) {
+    // compare key attribute with strcmp
     if (strcmp(a->key, b->key) <= 0) {
-
+      curr->next = a;
+      a = a->next;
     }
     else {
-
+      curr->next = b;
+      b = b->next;
     }
+    curr = curr->next;
   }
+
+  // if any list is left, append it
+  if (a != NULL) {
+    curr->next = a;
+  }
+  else {
+    curr->next = b;
+  }
+
+  return dummy.next;
 }
 
 // recursive sort
@@ -59,15 +74,38 @@ Node *merge_sort(Node *head) {
 int main() {
   FILE *ofile = fopen("hw1_input.txt", "r");
   if (ofile == NULL) return 1;
-  // n nodes
+  char buffer[2048];
+
+  // 1. n nodes
   int n;
   fscanf(ofile, "%d", &n);
-  // attributes & find key
-  fgets(ofile, "%s", );
-  // linked list
-  while (fgets(, sizeof(), ofile) != NULL) {
+
+  // 2. first $
+
+  // 3. attributes & find key
+  fgets(buffer, sizeof(buffer), ofile);
+
+  int key_idx = 0;
+
+  while () {
+    if ('*') {
+      key_idx = ;
+      break;
+    }
   }
+
+  // 4. second $
+
+  // 5. making linked list with real data
   Node *head = NULL;
+  Node *tail = NULL;
+
+  for (int i = 0; i < n; i++) {
+    Node *new = (Node *) malloc (sizeof(Node));
+    new->data = 
+    new->next = NULL;
+  }
+  fclose(ofile);
 
   head = merge_sort(head);
   
@@ -78,8 +116,7 @@ int main() {
     fprintf(rfile, "%s\n", curr->data);
     curr = curr->next;
   }
-
-  fclose(ofile);
   fclose(rfile);
+
   return 0;
 }
