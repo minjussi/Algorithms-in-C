@@ -81,29 +81,45 @@ int main() {
   fscanf(ofile, "%d", &n);
 
   // 2. first $
-
+  while (fgets(buffer, sizeof(buffer), ofile)) {
+    if (strchr(buffer, '$')) break;
+  }
   // 3. attributes & find key
   fgets(buffer, sizeof(buffer), ofile);
 
   int key_idx = 0;
-
-  while () {
-    if ('*') {
-      key_idx = ;
-      break;
+  int curr_idx = 0;
+  for (int i = 0; buffer[i] != '\0'; i++) {
+    if (buffer[i] == '*') {
+      key_idx = curr_idx;
+    }
+    if (buffer[i] == ':') {
+      curr_idx++;
     }
   }
 
   // 4. second $
+  while (fgets(buffer, sizeof(buffer), ofile)) {
+    if (strchr(buffer, '$')) break;
+  }
 
   // 5. making linked list with real data
   Node *head = NULL;
   Node *tail = NULL;
 
   for (int i = 0; i < n; i++) {
-    Node *new = (Node *) malloc (sizeof(Node));
-    new->data = 
+    Node *new = (Node *)malloc(sizeof(Node));
+    new->data = str
     new->next = NULL;
+
+    if (head == NULL) {
+      head = new;
+      tail = new;
+    }
+    else {
+      tail->next = new;
+      tail = new;
+    }
   }
   fclose(ofile);
 
