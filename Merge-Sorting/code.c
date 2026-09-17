@@ -4,7 +4,7 @@
 
 typedef struct Node {
   char *key;
-  char *data;
+  char *data; 
   struct Node *next;
 } Node;
 
@@ -86,6 +86,7 @@ int main() {
   }
   // 3. attributes & find key
   fgets(buffer, sizeof(buffer), ofile);
+  // handling new line character
 
   int key_idx = 0;
   int curr_idx = 0;
@@ -108,9 +109,17 @@ int main() {
   Node *tail = NULL;
 
   for (int i = 0; i < n; i++) {
+    if (fgets(buffer, sizeof(buffer), ofile) == NULL) break;
+    // new line character!
+
     Node *new = (Node *)malloc(sizeof(Node));
-    new->data = str
+
+    // copy data
+    new->data = (char *)malloc(strlen(buffer)+1);
+    strcpy(new->data, buffer);
     new->next = NULL;
+
+    // extract key attribute !!
 
     if (head == NULL) {
       head = new;
