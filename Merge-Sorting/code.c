@@ -131,15 +131,15 @@ int main() {
     // extract key attribute
     char key_buffer[64];
     int curr_attr = 0, k = 0;
-    for (int i=0; buffer[i] != '\0'; i++) {
-      if (buffer[i] == ':') {
+    for (int j = 0; buffer[j] != '\0'; j++) {
+      if (buffer[j] == ':') {
         if (curr_attr == key_idx) break; // key: first attribute
         curr_attr++;
         k = 0;
       }
       else {
         if (curr_attr == key_idx) {
-          key_buffer[k++] = buffer[i];
+          key_buffer[k++] = buffer[j];
         }
       }
     }
