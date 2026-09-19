@@ -143,7 +143,7 @@ int main() {
         }
       }
     }
-    key_buffer[k] = '\0'
+    key_buffer[k] = '\0';
     
     new_node->key = (char *)malloc(strlen(key_buffer)+1);
     strcpy(new_node->key, key_buffer);
