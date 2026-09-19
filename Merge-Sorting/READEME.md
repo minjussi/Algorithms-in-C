@@ -2,10 +2,10 @@
 
 ## Source Code Explanation
 
-**1. Node* merge(Node *a, Node *b)**: Create dummy node for new sorted list. The new sorted list starts with dummy node. Then, comparing key attributes with strcmp(const char *str1, const char *str2) function. strcmp function compares two strings with ASCII value and returns integer value. Writing conditional expression as if (strcmp (a->key, b->key) <= 0) to order elements in ascending order, and it guarantees keeping same order if the key is equal. Finally, if any sorted list is left, then append it to the new sorted list. 
+1. Node* merge(Node *a, Node *b): Create dummy node for new sorted list. The new sorted list starts with dummy node. Then, comparing key attributes with strcmp(const char *str1, const char *str2) function. strcmp function compares two strings with ASCII value and returns integer value. Writing conditional expression as if (strcmp (a->key, b->key) <= 0) to order elements in ascending order, and it guarantees keeping same order if the key is equal. Finally, if any sorted list is left, then append it to the new sorted list. 
 
 
-**2. Node* merge_sort(Node *head)**: To find the midpoint, normally the two pointers are used; slow and fast pointers. Slow pointer moves forward by 1 node, and fast pointer moves forward by 2 nodes. When the fast pointer reaches the end, slow pointer points to the midpoint. After finding the midpoint, split the list into two halves making the last element NULL. 
+2. Node* merge_sort(Node *head): To find the midpoint, normally the two pointers are used; slow and fast pointers. Slow pointer moves forward by 1 node, and fast pointer moves forward by 2 nodes. When the fast pointer reaches the end, slow pointer points to the midpoint. After finding the midpoint, split the list into two halves making the last element NULL. 
 
 ## Performance Analysis
 The overall time complexity of the program is O(n log n), which is dominated by the Merge Sort algorithm.
