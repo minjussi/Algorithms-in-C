@@ -129,7 +129,7 @@ int main() {
     new_node->next = NULL;
 
     // extract key attribute
-    char key_buffer[32];
+    char key_buffer[64];
     int curr_attr = 0, k = 0;
     for (int i=0; buffer[i] != '\0'; i++) {
       if (buffer[i] == ':') {
