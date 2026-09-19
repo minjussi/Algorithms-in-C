@@ -71,6 +71,13 @@ Node *merge_sort(Node *head) {
   return merge(left, right);
 }
 
+void newline_char(char *buffer) {
+  int len = strlen(buffer);
+  while (len > 0 && buffer[len-1] == '\n') {
+    buffer[--len] = '\0';
+  }
+}
+
 int main() {
   FILE *ofile = fopen("hw1_input.txt", "r");
   if (ofile == NULL) return 1;
@@ -87,6 +94,7 @@ int main() {
   // 3. attributes & find key
   fgets(buffer, sizeof(buffer), ofile);
   // handling new line character
+  newline_char(buffer);
 
   int key_idx = 0;
   int curr_idx = 0;
@@ -110,31 +118,50 @@ int main() {
 
   for (int i = 0; i < n; i++) {
     if (fgets(buffer, sizeof(buffer), ofile) == NULL) break;
-    // new line character!
+    // handling new line character
+    newline_char(buffer);
 
-    Node *new = (Node *)malloc(sizeof(Node));
+    Node *new_node = (Node *)malloc(sizeof(Node));
 
     // copy data
-    new->data = (char *)malloc(strlen(buffer)+1);
-    strcpy(new->data, buffer);
-    new->next = NULL;
+    new_node->data = (char *)malloc(strlen(buffer)+1);
+    strcpy(new_node->data, buffer);
+    new_node->next = NULL;
 
-    // extract key attribute !!
+    // extract key attribute
+    char key_buffer[256];
+    int curr_attr = 0, k = 0;
+    for (int i=0; buffer[i] != '\0'; i++) {
+      if (buffer[i] == ':') {
+        if (curr_attr == key_idx) break; // key: first attribute
+        curr_attr++;
+        k = 0;
+      }
+      else {
+        if (curr_attr == key_idx) {
+          key_buffer[k++] = buffer[i];
+        }
+      }
+    }
+    key_buffer[k] = '\0'
+    
+    new_node->key = (char *)malloc(strlen(key_buffer)+1);
+    strcpy(new_node->key, key_buffer);
 
     if (head == NULL) {
-      head = new;
-      tail = new;
+      head = new_node;
+      tail = new_node;
     }
     else {
-      tail->next = new;
-      tail = new;
+      tail->next = new_node;
+      tail = new_node;
     }
   }
   fclose(ofile);
 
   head = merge_sort(head);
   
-  // write results on file
+  // 6. write results on file
   FILE *rfile = fopen("hw1_output.txt", "w");
   Node *curr = head;
   while (curr != NULL) {
